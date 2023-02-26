@@ -91,22 +91,23 @@ class Numpyify:
     def __init__(self, folder, csv_name):
         #needs to be ran in the parent directory of image folder
         #probably need to change to be more flexible
+        self.folder = folder
         self.folder_path = os.getcwd() + '\\' + folder
         self.code_path = os.getcwd()
         self.csv_name = csv_name
         self.headers = ['image', 'label']
 
-    def get_files(self):
+    def get_files(self):#FIX!!!!
         self._pics = []
         objects = os.listdir(self.folder_path)
 
         for obj in objects:
-            if os.self.folder_path.isfile(obj):
+            obj = self.folder + '//' + obj
+            print(obj)
+            if os.path.isfile(obj):
                 self._pics.append(obj)
             else:
                 continue
-
-        print(self.folder_path)
 
     def write_csv(self, mode):
         #mode is 'w', 'a', etc
@@ -123,7 +124,8 @@ class Numpyify:
             writer.writerow(self.headers)
 
             for file in self._pics:
-                label = file.split('_')[0]
+                label = (file.split('_')[1]).split('//')[1]
+                print(label)
                 image = Image.open(file)
                 image = np.asarray(image)
 
