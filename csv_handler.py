@@ -103,7 +103,6 @@ class Numpyify:
 
         for obj in objects:
             obj = self.folder + '//' + obj
-            print(obj)
             if os.path.isfile(obj):
                 self._pics.append(obj)
             else:
@@ -125,7 +124,6 @@ class Numpyify:
 
             for file in self._pics:
                 label = (file.split('_')[1]).split('//')[1]
-                print(label)
                 image = Image.open(file)
                 image = np.asarray(image)
 
